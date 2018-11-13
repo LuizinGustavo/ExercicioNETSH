@@ -42,7 +42,9 @@ SET /P $endGateway=Digite o endereco do Gateway:
 
 SET /P $endDNS=Digite o endereco do DNS:
 
-netsh interface ip set address name="%$conexao%" static gateway="%$endGateway%" gwmetric=1
+SET /P $metGate=Digite a métrica do DNS:
+
+netsh interface ip set address name="%$conexao%" static gateway="%$endGateway%" gwmetric=%$metGate%
 
 netsh interface ip set dns "%$conexao%" static %$endDNS%
 
