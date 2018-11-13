@@ -40,12 +40,29 @@ SET /P $conexao=Digite o nome da conexao a ser alterada:
 
 SET /P $endGateway=Digite o endereco do Gateway:
 
-netsh interface ip set address name="%$conexao%" static gateway=%$endGateway% gwmetric=1
+SET /P $endDNS=Digite o endereco do DNS:
+
+netsh interface ip set address name="%$conexao%" static gateway="%$endGateway%" gwmetric=1
+
+netsh interface ip set dns "%$conexao%" static %$endDNS%
 
 goto menu
 
 :alterarEndGeral
-color 5
+SET /P $conexao=Digite o nome da conexao a ser alterada:
+
+SET /P $endIP=Digite o novo endereco IP:
+
+SET /P $mascara=Digite a nova Mascara:
+
+SET /P $endGateway=Digite o endereco do Gateway:
+
+SET /P $endDNS=Digite o DNS:
+
+netsh interface ip set address name="%$conexao%" static %$endIP% %$mascara% %$endGateway% 1
+
+netsh interface ip set dns "%$conexao%" static %$endDNS%
+
 goto menu
 
 :modoAutomatico
